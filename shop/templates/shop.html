@@ -1,0 +1,64 @@
+{% extends "homepage_base.html" %}
+{% load static %}
+{% block title %} 
+SHOP
+{% endblock %}
+{% block style %} 
+
+{% endblock %}
+{% block page_name %} 
+SHOP
+{% endblock %}
+{% block content %} 
+<div class="product-section mt-150 mb-150">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="product-filters">
+					<ul>
+						<a href="/shop" ><li  {% if  hover is None %}class='active'{% endif %} >All</li></a>
+						{% for x in main_category %}
+						{% comment %} <li data-filter=".strawberry">{{x.name}}</li> {% endcomment %}
+						<a href="/shop_cat{{ x.id }}/"><li {% if x.id == hover %}class='active'{% endif %}>{{ x.name }}</li></a>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row product-lists">
+			{% for product in main_prodect %}
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="/single_prodect{{product.id}}/">
+                            {% if product.prodect_image1 %}
+                                <img style="width:110px ; height:120px;" src="{{ product.prodect_image1.url }}" alt="">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <h3>{{ product.prodect_name}}</h3>
+                    <p class="product-price"> {{ product.price }}  ₹</p>
+                    <a href="shop" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add Cart</a>
+                </div>
+            </div>
+		{% endfor %}
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="pagination-wrap">
+					<ul>
+						<li><a href="#">Prev</a></li>
+						<li><a href="#">1</a></li>
+						<li><a class="active" href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">Next</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
