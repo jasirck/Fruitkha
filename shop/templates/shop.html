@@ -32,7 +32,7 @@ SHOP
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="/single_prodect{{product.id}}/">
+                        <a href="/single_prodect{{product.id}}">
                             {% if product.prodect_image1 %}
                                 <img style="width:110px ; height:120px;" src="{{ product.prodect_image1.url }}" alt="">
                             {% endif %}
@@ -40,7 +40,13 @@ SHOP
                     </div>
                     <h3>{{ product.prodect_name}}</h3>
                     <p class="product-price"> {{ product.price }}  ₹</p>
-                    <a href="shop" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add Cart</a>
+                    <form action="/add_cart{{ product.id }}/" method="POST">
+						{% csrf_token %}
+						<input type="number" min='0' placeholder="0" name='quantity'><p class="single-product-pricing"></p>
+
+						{% comment %} <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> {% endcomment %}
+						<button style="border: 0ch;" type="submit"><a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
+					</form>
                 </div>
             </div>
 		{% endfor %}

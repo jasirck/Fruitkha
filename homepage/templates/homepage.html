@@ -79,13 +79,13 @@
 										<li><a href="shop.html">Shop</a></li>
 									</ul>
 								</li> {% endcomment %}
-								<li><a href="/news.html">News</a>
+								<li><a href="/news">News</a>
 									{% comment %} <ul class="sub-menu">
 										<li><a href="news.html">News</a></li>
 										<li><a href="single-news.html">Single News</a></li>
 									</ul> {% endcomment %}
 								</li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="/contact">Contact</a></li>
 								<li><a href="/shop">Shop</a>
 									{% comment %} <ul class="sub-menu">
 										<li><a href="shop">Shop</a></li>
@@ -96,9 +96,9 @@
 								</li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="/cart_page"><i class="fas fa-shopping-cart"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-										<a class="" href="login"><i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+										<a class="" href="/account"><i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 											<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
 										  </svg></i></a>
 										  <a href='/logout_user' class="main-menu" ><i>LOGOUT</i></a>
@@ -237,11 +237,12 @@
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html">
-                            {% if product.category_image %}
+                        {% if product.category_image %}
+						    <a href="/shop_cat{{ product.id }}/">
                                 <img style="width:100px ; height:110px;" src="{{ product.category_image.url }}" alt="">
-                            {% endif %}
-                        </a>
+							</a>
+                        {% endif %}
+                        
                     </div>
                     <h3>{{ product.name }}</h3>
                     <p class="product-price"> {{ product.offer }}% <p>OFFER</p></p>

@@ -11,6 +11,17 @@ def homepage(request):
         main_category = AdminCategory.objects.all()
         return render(request, 'homepage.html', {'main_category': main_category})
     return render(request,'login.html')
+def news(request):
+    if 'username'in request.session:
+        print('newspage here')
+        return render(request, 'news.html', )
+    return render(request,'login.html')
+
+def contact(request):
+    if 'username'in request.session:
+        print('contactpage here')
+        return render(request, 'contact.html', )
+    return render(request,'login.html')
 
 def about(request):
     if 'username'in request.session:

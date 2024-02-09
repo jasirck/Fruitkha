@@ -14,7 +14,7 @@ Management
   <div class="col-md-5 grid-margin add-stretch-card">
     <table id="customers" border="1">
       <thead>
-          <th>Id</th>
+          <th>DP</th>
           <th>Username</th>
           <th>Email</th>
           <th>Number</th>
@@ -23,11 +23,11 @@ Management
       </thead>
       {% for x in user %}
       <tr>
-          <td>{{x.id}}</td>
+          <td><img style="width:50px; height:50px; border-radius: 50px;" src="{{x.user_dp}}" alt=""></td>
           <td>{{x.username}}</td>
           <td>{{x.email}}</td>
           <td>{{x.number}}</td>
-          <td>{{x.action | upper}}</td>
+          <td {% if x.status == 'LOGIN' %} style="color: rgb(2, 221, 2); font-weight: bold;"{% else %} style="color: red;font-weight: bold;"{% endif%} >{{x.status}}</td>
           <td> 
             {% if x.action == 'block' %}
             <a href="action{{ x.id }}"><button id="up">allow</button></a>

@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from my_admin.models import myprodect,AdminCategory,unlist_prodect,myvariant
+from my_admin.models import myprodect,AdminCategory,myvariant
 from login.models import user
 from my_admin.forms import prodectsForm
 

@@ -1,5 +1,5 @@
 from django.db import models
-
+# from image_cropping import ImageRatioField
 # Create your models here.
 class AdminCategory(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -31,22 +31,7 @@ class myprodect(models.Model):
     prodect_image1=models.ImageField(upload_to='image/')
     prodect_image2=models.ImageField(upload_to='image/')
     prodect_image3=models.ImageField(upload_to='image/')
-
-    def __str__(self):
-        return self.prodect_name
-
-
-class unlist_prodect(models.Model):
-    id=models.BigAutoField(primary_key=True)
-    price=models.IntegerField()
-    prodect_name=models.CharField()
-    category=models.CharField(max_length=50)
-    description=models.TextField()
-    quantity=models.IntegerField()
-    variant=models.CharField(max_length=50)
-    prodect_image1=models.ImageField(upload_to='image/unlist')
-    prodect_image2=models.ImageField(upload_to='image/unlist')
-    prodect_image3=models.ImageField(upload_to='image/unlist')
+    # cropping = ImageRatioField('image', '225x225')
 
     def __str__(self):
         return self.prodect_name

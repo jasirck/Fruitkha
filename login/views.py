@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from login.models import user
 import random
 from django.core.mail import send_mail
-from login.models import user
 from django.utils import timezone
 from my_admin.models import myprodect,AdminCategory
 
@@ -21,6 +21,8 @@ def login(request):
             if m.username== username :
                 if (m.password==password):
                     request.session['username']=username
+                    m.status='LOGIN'
+                    m.save()
                     return redirect('homepage')
                 else:
                     messages.info(request, 'Password Not Match !')
@@ -115,8 +117,6 @@ def register(request):
         number = request.POST.get('number')
         check_num=number
         print(check_num)
-        # email = request.POST.get('email')
-        address = request.POST.get('address')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
         global user_email
@@ -129,7 +129,7 @@ def register(request):
             else:
                  
                  print(username,'eleseEeEeEeee')
-                 user_obj = user(first_name=first_name,email=user_email,last_name=last_name,username=username,address=address,number=123456789,password=password1)
+                 user_obj = user(first_name=first_name,email=user_email,last_name=last_name,username=username,number=number,password=password1)
                  print(type(number))
                  user_obj.save()
                  messages.success(request, 'User registered')
@@ -141,7 +141,7 @@ def register(request):
 def validation(request):
     if request.method == 'POST':
         global otp
-        global ftime
+        global time
         time_difference = timezone.now() - time
         user_otp = request.POST.get('otp')
         print(otp,"||",user_otp)
@@ -178,7 +178,12 @@ def new_password(request):
 
 def logout_user(request):
     if 'username'in request.session:
+        username = request.session.get('username', None)
+        user_obj = user.objects.get(username=username)
+        user_obj.status= 'LOGOUT'
+        user_obj.save()
         request.session.flush()
+        
         messages.info(request, 'your logout')
         return render(request,'login.html')
     else:
