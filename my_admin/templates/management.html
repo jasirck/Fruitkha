@@ -4,7 +4,7 @@
 management
 {% endblock %}
 {% block style %} 
-<link rel="stylesheet" href="{% static "assets/css/manage_new.css" %}">
+<link rel="stylesheet" href="{% static "assets/css/manage_new1.css" %}">
 {% endblock %}
 {% block page_name %} 
 Management
@@ -31,7 +31,7 @@ Management
           <td> 
             {% if x.action == 'block' %}
             <a href="action{{ x.id }}"><button id="up">allow</button></a>
-            {% elif x.action == 'active' %}
+            {% elif x.action == 'allow' %}
             <a href="action{{ x.id }}"><button id="del">block</button></a>
             {% endif %}
           </td>

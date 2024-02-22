@@ -23,31 +23,30 @@
                 <div class="form sign-up">
                   <form class="form1" action="validation" method="post">
                     {% csrf_token %}
-                    {% comment %} <div class="input-group">
-                        <i class='bx bxs-user'></i>
-                        <input type="text" placeholder="Username">
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bx-mail-send'></i>
-                        <input type="email" placeholder="Email">
-                    </div>
+                   
                     <div class="input-group">
                         <i class='bx bxs-lock-alt'></i>
-                        <input type="password" placeholder="Password">
-                    </div> {% endcomment %}
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input type="number" placeholder="Enter OTP" name='otp'>
+                        <label for="" style="color: gray; font-weight: 600;">Before 60 Seconds</label>
+                        <input type="text" placeholder="Enter OTP" name='otp'>
                     </div>
                     <button type="submit">
                         submit
                     </button>
                     <p>
                         <span>
+                            <a href="otp" class="pointer">
+                                RESEND OTP
+                            </a>
+                        </span>
+                        
+                    </p>
+                    <p>
+                        <span>
                             Already have an account?
                         </span>
                         <b onclick="toggle()" class="pointer">
-                            Sign in here
+                            <a href="login">
+                                Sign in here</a>
                         </b>
                     </p>
                     {% if messages %}

@@ -32,10 +32,12 @@ SINGLE SHOP
                     <div class="single-product-form">
                         <form action="add_cart{{ single_product.id }}/" method="POST">
                             {% csrf_token %}
-                            <input type="number" min='0' placeholder="0" name='quantity'><p class="single-product-pricing"></p>
-
+                            <input type="number" min='1' start placeholder="0" name='quantity'><p class="single-product-pricing"></p>
+                            {% if left %}
+                            <p style="color: red; ">{{single_product.quantity}}&nbsp;Kg is Only Left</p>
+                            {% endif %}
                             {% comment %} <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> {% endcomment %}
-                            <button style="border: 0ch;border: transparent;" type="submit"><a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
+                            <button style="border: 0ch;background-color: transparent;outline: none;" type="submit"><a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
                         </form>
                         {% if messages %}
                     <ul >
@@ -55,7 +57,7 @@ SINGLE SHOP
                         <li><a href=""><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </div>

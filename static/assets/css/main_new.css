@@ -2768,3 +2768,15 @@ table.order-details tbody td {
   vertical-align: middle;
   width: 100%;
 }
+/* .cart_button{
+  border-color: transparent;
+  background-color: #000;
+} */
+.online-pay{
+  font-family: 'Poppins', sans-serif;
+  display: inline-block;
+  background-color: #F28123;
+  color: #fff;
+  padding: 10px 20px; 
+  border-radius: 30px;
+}

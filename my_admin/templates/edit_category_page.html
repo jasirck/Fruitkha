@@ -4,7 +4,7 @@
 Add prodect
 {% endblock %}
 {% block style %} 
-<link rel="stylesheet" href="{% static "assets/css/add.css" %}">
+<link rel="stylesheet" href="{% static "assets/css/add1.css" %}">
 {% endblock %}
 {% block page_name %} 
 Add prodect
@@ -12,14 +12,12 @@ Add prodect
 {% block content %} 
 <div class='row' >
   <div class="col-md-5 grid-margin add-stretch-card">
-    <form  action="edit_category_page" method="post"  enctype="multipart/form-data">
+    <form  action="edit_category_page{{category.id}}" method="post"  enctype="multipart/form-data">
       {% csrf_token %}
       <div class="add_card" style='width:500px ;'>
         <div class="card-body" >
           <select class="inputbox" style='width:500px;' type="text" align="center" name="category_name" id="category_name" value="{{pro.prodect_name}}">
-            {% for cate in category %}
-            <option value="{{ cate.name }}">{{ cate.name }}</option>
-          {% endfor %}
+            <option value="{{ category.name }}">{{ category.name }}</option>
           </select>
         </div>
       </div>
@@ -30,17 +28,17 @@ Add prodect
       </div> {% endcomment %}
       <div class="add_card" style='width:600px ; '>
         <div class="card-body">
-          <input class="inputbox" style='width:600px ;' type="text" align="center" name="category_description" id="category_description" placeholder="Description">
+          <input class="inputbox" style='width:600px ;' type="text" align="center" name="category_description" id="category_description" value="{{category.category_description}}" >
         </div>
       </div>
       <div class="add_card" style='width:200px ; '>
         <div class="card-body">
-          <input class="inputbox" style='width:200px ;' type="text" align="center" name="offer" id="offer" placeholder="offer">
+          <input class="inputbox" style='width:200px ;' type="text" align="center" name="offer" id="offer" value="{{category.offer}}">
         </div>
       </div>
-      <div class="add_card" style='width:200px ; '>
-        <div class="card-body">
-          <input class="inputbox" style='width:250px ;' type="file" align="center" name="category_image" id="category_image" placeholder="category_image">
+      <div class="add_card" style='width:300px ; '>
+        <div class="card-body" style='width:300px ; '>
+          <input class="inputbox" style='width:250px ;' type="file" align="center" name="category_image" id="category_image" value="{{category.category_image}}">
         </div>
       </div>
       

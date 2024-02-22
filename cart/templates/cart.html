@@ -33,30 +33,29 @@ CART
 									<td class="product-remove"><a href="delete_cart{{product.id}}"><i class="far fa-window-close"></i></a></td>
 									<td class="product-image"><img src="{{product.product_id.prodect_image1.url}}" alt=""></td>
 									<td class="product-name">{{product.product_id.prodect_name}}</td>
-									<td class="product-price">{{product.product_id.price}}</td>
-									<td class="product-quantity"><input type="number" min='0' placeholder="{{product.book_quantity}}"></td>
-									<td class="product-total">1</td>
+									<td class="product-price">{{product.product_id.price}}₹</td>
+									{% comment %} <td class="product-quantity"><a href="minus_cart{{product.id}}/{{product.product_id.price}}"><button style="border-color:transparent; background-color: transparent;outline: none; color: orangered;font-weight: 400;font-size: 2rem;">-</button></a>&nbsp;{{product.book_quantity}}<a href="plus_cart{{product.id}}/{{product.product_id.price}}" ><button style="outline: none;border-color:transparent; background-color: transparent; color: orangered;font-weight: 400;font-size: 1.5rem;">+</button></a></td> {% endcomment %}
+									<td class="product-quantity">
+										<button class="minus-btn" onclick='minus_function("{{ product.id }}","{{ product.product_id.price }}")' style="border-color:transparent; background-color: transparent;outline: none; color: orangered;font-weight: 400;font-size: 2rem;">-</button>
+										&nbsp;{{ product.book_quantity }}
+										<button class="plus-btn" onclick="{{ product.id }}","{{ product.product_id.price }}" style="border-color:transparent; background-color: transparent;outline: none; color: orangered;font-weight: 400;font-size: 2rem;">+</button>
+										
+										
+									</td>
+									
+									<td class="product-total">{{product.cart_total}}</td>
 								</tr>
 								{% endfor %}
-								{% comment %} <tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr> {% endcomment %}
 							</tbody>
 						</table>
 					</div>
+					{% if messages %}
+                    <ul >
+                      {% for messages in messages %}
+                      <h3 style="color: orangered ;  " >{{messages}}</h3>
+                      {% endfor %}
+                     </ul>
+                     {% endif %}
 				</div>
 
 				<div class="col-lg-4">
@@ -71,21 +70,21 @@ CART
 							<tbody>
 								<tr class="total-data">
 									<td><strong>Subtotal: </strong></td>
-									<td>$500</td>
+									<td>{{subtotal}}₹</td>
 								</tr>
 								<tr class="total-data">
 									<td><strong>Shipping: </strong></td>
-									<td>$45</td>
+									<td>{{ship}}₹</td>
 								</tr>
 								<tr class="total-data">
 									<td><strong>Total: </strong></td>
-									<td>$545</td>
+									<td>{{total}}₹</td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="cart.html" class="boxed-btn">Update Cart</a>
-							<a href="checkout.html" class="boxed-btn black">Check Out</a>
+							<!-- <a href="cart.html" class="boxed-btn">Update Cart</a> -->
+							<a href="checkout" class="boxed-btn black">Check Out</a>
 						</div>
 					</div>
 					<!-- coupon -->
@@ -104,4 +103,6 @@ CART
 		</div>
 	</div>
 	<!-- end cart -->
+	
+
 {% endblock %}

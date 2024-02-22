@@ -8,3 +8,4 @@ class cart(models.Model):
     user_id= models.ForeignKey(user, on_delete=models.CASCADE)
     product_id = models.ForeignKey(myprodect, on_delete=models.CASCADE)
     book_quantity=models.IntegerField(null=True)
+    cart_total=models.IntegerField()

@@ -85,9 +85,18 @@ h1 {
 .square-50 {
     width: 60px;
     height: 60px;
+    border-radius: 30px;
 }
 .multi_img{
     width: 60px;
     height: 60px;
     display: flex;
 }
+.admin_add{
+    background-color: white; 
+    font-size: larger;
+    border-color: rgb(7, 255, 7); 
+    font-weight: 600; color: rgb(7, 255, 7); 
+    margin-top: 20px;
+    border-radius: 20px;
+  }

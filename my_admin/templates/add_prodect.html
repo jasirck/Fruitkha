@@ -4,7 +4,7 @@
 Add prodect
 {% endblock %}
 {% block style %} 
-<link rel="stylesheet" href="{% static "assets/css/add.css" %}">
+<link rel="stylesheet" href="{% static "assets/css/add1.css" %}">
 {% endblock %}
 {% block page_name %} 
 Add prodect
@@ -12,6 +12,13 @@ Add prodect
 {% block content %} 
 <div class='row' >
   <div class="col-md-5 grid-margin add-stretch-card">
+    {% if messages %}
+      <ul class="messages">
+        {% for messages in messages %}
+        <h3 style="color: red;margin-left: 50px;">{{messages}}</h3>
+        {% endfor %}
+      </ul>
+      {% endif %}
     <form action="add_prodect" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="add_card" style='width:500px;'>
@@ -39,13 +46,13 @@ Add prodect
       <div class="add_card" style='width:200px;'>
         <div class="card-body">
           <label for="id_price"></label>
-          <input class="inputbox" style='width:200px;' type="number" align="center" name="price" id="price" placeholder="Price per kg">
+          <input class="inputbox" style='width:200px;' type="number" align="center" min="1" name="price" id="price" placeholder="Price per kg">
         </div>
       </div>
       <div class="add_card" style='width:200px;'>
         <div class="card-body">
           <label for="id_quantity"></label>
-          <input class="inputbox" style='width:200px;' type="number" align="center" name="quantity" id="quantity" placeholder="Total quantity">
+          <input class="inputbox" style='width:200px;' type="number" align="center" min="0" name="quantity" id="quantity" placeholder="Total quantity">
         </div>
       </div>
       <div class="add_card" style='width:200px;'>
@@ -83,13 +90,7 @@ Add prodect
     
   </div>
 </div>
-{% if messages %}
-      <ul class="messages">
-        {% for messages in messages %}
-        <h3 style="color: red;margin-left: 50px;">{{messages}}</h3>
-        {% endfor %}
-      </ul>
-      {% endif %}
+
 {% endblock %}
 
           

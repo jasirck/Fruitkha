@@ -52,7 +52,7 @@
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.html">
-								<img src="assets/img/logo.png" alt="">
+								<img src={% static "assets/img/logo.png" %} alt="">
 							</a>
 						</div>
 						<!-- logo -->
@@ -100,7 +100,11 @@
 										<a class="" href="/account"><i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 											<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
 										  </svg></i></a>
-										  <a href='/logout_user' class="main-menu" ><i>LOGOUT</i></a>
+										  {% if log %}
+										  <a href='/logout_user' class="" ><i>LOGOUT</i></a>
+										  {% else %}
+										  <a href='/login' class="" ><i>LOGIN</i></a>
+										  {% endif %}
 									</div>
 								</li>
 							</ul>
@@ -160,19 +164,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
+							<img src={% static "assets/img/company-logos/1.png" %} alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
+							<img src={% static "assets/img/company-logos/2.png" %} alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
+							<img src={% static "assets/img/company-logos/3.png" %} alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
+							<img src={% static "assets/img/company-logos/4.png" %} alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
+							<img src={% static "assets/img/company-logos/5.png" %} alt="">
 						</div>
 					</div>
 				</div>
@@ -264,15 +268,21 @@
 	<!-- waypoints -->
 	<script src="{% static "assets/js/waypoints.js" %} "></script>
 	<!-- owl carousel -->
-	<script src="{% static " assets/js/owl.carousel.min.js" %}"></script>
+	<script src="{% static "assets/js/owl.carousel.min.js" %}"></script>
 	<!-- magnific popup -->
 	<script src="{% static "assets/js/jquery.magnific-popup.min.js" %} "></script>
 	<!-- mean menu -->
-	<script src="{% static " assets/js/jquery.meanmenu.min.js" %}"></script>
+	<script src="{% static "assets/js/jquery.meanmenu.min.js" %}"></script>
 	<!-- sticker js -->
 	<script src="{% static "assets/js/sticker.js" %} "></script>
 	<!-- main js -->
 	<script src="{% static "assets/js/main.js" %} "></script>
+	<!-- cart js -->
+	<script src="{% static "assets/js/cart.js" %} "></script>
+	
+	{% block script %}{% endblock  %}
+	<!-- onlin pay js -->
+	<script src="{% static "assets/js/checkout.js" %} "></script>
 
 </body>
 </html>

@@ -4,12 +4,13 @@
 Add prodect
 {% endblock %}
 {% block style %} 
-<link rel="stylesheet" href="{% static "assets/css/add.css" %}">
+<link rel="stylesheet" href="{% static "assets/css/add1.css" %}">
 {% endblock %}
 {% block page_name %} 
 Add prodect
 {% endblock %}
 {% block content %} 
+
 <div class='row' >
   <div class="col-md-5 grid-margin add-stretch-card">
     <form  action="edit_prodect_page{{ prodect.id }}" method="post" enctype="multipart/form-data">
@@ -40,14 +41,14 @@ Add prodect
       <div class="add_card" style='width:200px ; '>
         <div class="card-body">
           <label for="prodect_name">Product price: </label>
-          <input class="inputbox" style='width:200px ;' type="number" align="center" name="price" id="price" value="{{ prodect.price }}"><p>per kg</p>
+          <input class="inputbox" style='width:200px ;' type="number" min="0" align="center" name="price" id="price" value="{{ prodect.price }}"><p>per kg</p>
         </div>
       </div>
       
       <div class="add_card" style='width:200px ; '>
         <div class="card-body">
           <label for="prodect_name">Product quantity: </label>
-          <input class="inputbox" style='width:200px ;' type="number" align="center" name="quantity" id="quantity" value="{{ prodect.quantity }}">
+          <input class="inputbox" style='width:200px ;' type="number" min="0" align="center" name="quantity" id="quantity" value="{{ prodect.quantity }}">
         </div>
       </div>
       <div class="add_card" style='width:200px ; '>

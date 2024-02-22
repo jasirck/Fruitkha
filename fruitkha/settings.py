@@ -153,14 +153,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.views import View
-# from django.shortcuts import render
 
-# class MyView(LoginRequiredMixin, View):
-#     login_url = "/login/" 
-    # redirect_field_name = "homepage"  
 
-    # def get(self, request, *args, **kwargs):
-    #     # Your view logic goes here
-    #     return render(request, 'my_template.html')
+SESSION_COOKIE_AGE = 86400  # Session expires in 1 day (24 * 60 * 60 seconds)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Sessions expire based on SESSION_COOKIE_AGE

@@ -7,6 +7,7 @@ class AdminCategory(models.Model):
     category_description = models.TextField()
     offer = models.IntegerField()
     category_image=models.ImageField(upload_to='category_image/',)
+    status=models.CharField(max_length=50,default='list')
     def __str__(self):
         return self.name
 
@@ -14,6 +15,7 @@ class AdminCategory(models.Model):
 class myvariant(models.Model):
     id = models.BigAutoField(primary_key=True)
     variant_name = models.CharField(unique=True, max_length=255)
+    status=models.CharField(max_length=50,default='list')
     def __str__(self):
         return self.variant_name
 

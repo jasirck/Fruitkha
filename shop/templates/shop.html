@@ -22,6 +22,14 @@ SHOP
 						{% comment %} <li data-filter=".strawberry">{{x.name}}</li> {% endcomment %}
 						<a href="/shop_cat{{ x.id }}/"><li {% if x.id == hover %}class='active'{% endif %}>{{ x.name }}</li></a>
 						{% endfor %}
+						<select name="" placeholder="" style="border-color: transparent;" id="">
+							<option value="">A - Z</option>
+							<option value="">Z - A</option>
+							<option value="">Hight to Low</option>
+							<option value="">Low to Hight</option>
+							<option value="">Rating</option>
+							<option value="">Popularity</option>
+						</select>
 					</ul>
 				</div>
 			</div>
@@ -42,10 +50,12 @@ SHOP
                     <p class="product-price"> {{ product.price }}  ₹</p>
                     <form action="/add_cart{{ product.id }}/" method="POST">
 						{% csrf_token %}
-						<input type="number" min='0' placeholder="0" name='quantity'><p class="single-product-pricing"></p>
-
+						<input type="number" min='1' placeholder="1" name='quantity'><p class="single-product-pricing"></p>
+						{% if left %}
+                            <p style="color: red; ">{{single_product.quantity}}&nbsp;Kg is Only Left</p>
+                            {% endif %}
 						{% comment %} <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> {% endcomment %}
-						<button style="border: 0ch;" type="submit"><a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
+						<button style="border: 0ch;background-color: transparent;" type="submit"><a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
 					</form>
                 </div>
             </div>

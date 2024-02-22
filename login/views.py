@@ -10,20 +10,24 @@ from my_admin.models import myprodect,AdminCategory
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
         try:
             if 'username'in request.session:
                 print('homepage here')
                 main_category = AdminCategory.objects.all()
                 return render(request, 'homepage.html', {'main_category': main_category})
-            m = user.objects.get(username=username,password=password)
-            if m.username== username :
+            m = user.objects.get(email=email)
+            if m.email== email :
                 if (m.password==password):
-                    request.session['username']=username
-                    m.status='LOGIN'
-                    m.save()
-                    return redirect('homepage')
+                    if (m.action=='allow'):
+                        request.session['username']=m.username
+                        m.status='LOGIN'
+                        m.save()
+                        return redirect('homepage')
+                    else:
+                        messages.info(request, 'Sorry Your Blocked !')
+                        return redirect('login')
                 else:
                     messages.info(request, 'Password Not Match !')
                     return redirect('login.html')
@@ -116,6 +120,7 @@ def register(request):
         last_name = request.POST.get('last_name')
         number = request.POST.get('number')
         check_num=number
+        number=int(number)
         print(check_num)
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
@@ -125,6 +130,10 @@ def register(request):
             if user.objects.filter(username=username).exists():
                 messages.info(request, 'Username is already taken!')
                 print('username take!!!!')
+                return redirect('register')
+            if username.strip() == '':
+                messages.info(request, "Username is emty!")
+                print('username emty!!!!')
                 return redirect('register')
             else:
                  
@@ -145,15 +154,18 @@ def validation(request):
         time_difference = timezone.now() - time
         user_otp = request.POST.get('otp')
         print(otp,"||",user_otp)
-        if otp == int(user_otp) and time_difference.total_seconds() <= 60 :
-            print('success')
-            global for_email
-            # user_obj.save()
+        try :
+            if otp == int(user_otp) and time_difference.total_seconds() <= 60 :
+                print('success')
+                global for_email
+                # user_obj.save()
             
-            return redirect ('register')
-        else:
-            messages.info(request, 'OTP not match')
-            return redirect('validation')
+                return redirect ('register')
+            else:
+                messages.info(request, 'OTP not match or time out')
+                return redirect('validation')
+        except:
+            return render(request,'validation.html')
     return render(request,'validation.html')
 
 def new_password(request):
@@ -185,6 +197,6 @@ def logout_user(request):
         request.session.flush()
         
         messages.info(request, 'your logout')
-        return render(request,'login.html')
+        return redirect('login')
     else:
-        return render(request,'homepage.html')
+        return redirect('login')
